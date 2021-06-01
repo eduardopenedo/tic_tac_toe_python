@@ -24,7 +24,7 @@ def ganhou(tabuleiro):
         if (tabuleiro[i][0] == tabuleiro[i][1] and tabuleiro[i][0] == tabuleiro[i][2]):
             resposta = (True, tabuleiro[i][0])
         if (tabuleiro[0][i] == tabuleiro[1][i] and tabuleiro[0][i] == tabuleiro[2][i]):
-            resposta = (True, tabuleiro[i][i])
+            resposta = (True, tabuleiro[0][i])
 
     # vitória diagonal
 
@@ -38,14 +38,18 @@ def ganhou(tabuleiro):
     else:
         return (False,)
 
-
+def espaco_em_branco(tabuleiro):
+    ha_espaco = False
+    for i in range(3):
+        if "-" in tabuleiro[i]:
+            ha_espaco = True
 def jogar():
     tabuleiro = novo_tabuleiro()
 
     mostra_tabuleiro(tabuleiro)
 
     # Enquanto houver espaços em branco ("-") o loop irá ocorrer
-    while ("-" in tabuleiro[0]) or ("-" in tabuleiro[1]) or ("-" in tabuleiro[2]):
+    while (espaco_em_branco(tabuleiro)):
         # Jogada jogador 1
         jogada1 = input("Jogador 1 - Escolha uma posição [x,y]\n> ")
 
@@ -56,9 +60,8 @@ def jogar():
 
         mostra_tabuleiro(tabuleiro)
 
-
         if (ganhou(tabuleiro)[0]):
-            print(str(ganhou(tabuleiro)[1]) + "ganhou")
+            print(str(ganhou(tabuleiro)[1]) + " ganhou")
             break
 
         # Jogada jogador 2
@@ -68,12 +71,16 @@ def jogar():
         tabuleiro[x][y] = "O"
 
         mostra_tabuleiro(tabuleiro)
+    
+    # Verifica se deu velha 
+    if espaco_em_branco(tabuleiro)==False and ganhou()==False:
+        print("Velha!")
 
 if __name__ == '__main__':
     jogando = True
     while jogando:
         jogar()
-        continuarjogando = input("Deseja Jogar Novamente? [S/N]")
+        continuarjogando = input("Deseja Jogar Novamente? S/N")
         if continuarjogando in ["N","n"]:
             jogando = False
     else:
