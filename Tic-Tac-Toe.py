@@ -1,4 +1,5 @@
 # Cria tabuleiro com "-" dentro
+# null -> list
 def novo_tabuleiro():
     tabuleiro = list()
 
@@ -12,12 +13,14 @@ def novo_tabuleiro():
     return tabuleiro
 
 # Mostra o tabuleiro
+# null -> null
 def mostra_tabuleiro(tabuleiro):
     for i in range(len(tabuleiro)):
         # Mostra a linha gerada
         print(" ".join(tabuleiro[i]))
 
 # Verifica se há uma situação de vitória, retornando True quando há e False quando não há
+# list -> tuple
 def ganhou(tabuleiro):
     resposta = (False,"-")
 
@@ -42,7 +45,8 @@ def ganhou(tabuleiro):
     else:
         return (False,"-")
 
-# Se há espaços em branco ("-") na matriz retorna True, caso contrário, retorna False 
+# Se há espaços em branco ("-") na matriz retorna True, caso contrário, retorna False
+# list -> bool
 def espaco_em_branco(tabuleiro):
     ha_espaco = False
     for i in range(3):
@@ -50,7 +54,8 @@ def espaco_em_branco(tabuleiro):
             ha_espaco = True
     return ha_espaco
 
-# verifica se critérios que a jogada deve possuir
+# Verifica se critérios que a jogada deve possuir
+# string, list -> bool
 def jogada_valida(jogada,tabuleiro):
     valida = False
     len_colunas = len(tabuleiro)
@@ -63,6 +68,7 @@ def jogada_valida(jogada,tabuleiro):
     return valida
 
 # Realiza a jogada pretendida
+# int, list, string -> null
 def realizar_jogada(numero_jogador, tabuleiro, marcador):
     # Pede jogada a ser feita
     jogada = input(str.format("\nJogador {} - Escolha uma posição [x,y]\n> ", numero_jogador))
@@ -78,6 +84,7 @@ def realizar_jogada(numero_jogador, tabuleiro, marcador):
     tabuleiro[y][x] = marcador
 
 # inica um novo jogo
+# null -> null
 def jogar():
     # Inicia novo tabuleiro
     tabuleiro = novo_tabuleiro()
@@ -124,5 +131,4 @@ if __name__ == '__main__':
         continuarjogando = input("Deseja Jogar Novamente? S/N\n> ")
         if continuarjogando in ["N","n"]:
             jogando = False
-    else:
-        print("Saindo ...")
+            print("Saindo ...")
