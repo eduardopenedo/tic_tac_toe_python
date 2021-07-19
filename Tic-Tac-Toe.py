@@ -121,7 +121,7 @@ def jogar():
     if espaco_em_branco(tabuleiro)==False and ganhou()==False:
         print("Velha!")
 
-if __name__ == '__main__':
+def main():
     jogando = True
     while jogando:
         # incia um novo jogo
@@ -129,6 +129,9 @@ if __name__ == '__main__':
 
         # Enquanto a resposta ao diálogo for diferente de "n" e "N" continua iniciando um novo jogo
         continuarjogando = input("Deseja Jogar Novamente? S/N\n> ")
-        if continuarjogando in ["N","n"]:
+        if continuarjogando in ["N", "n"]:
             jogando = False
             print("Saindo ...")
+
+if __name__ == '__main__':
+    main()
